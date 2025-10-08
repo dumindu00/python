@@ -4,27 +4,22 @@ from enum import Enum
 
 
 
-class RPS():
-    ROCK = 1
-    PAPER = 2
-    SCISSORS = 3
+def play_rps():
 
-playagain = True
-
-while playagain:
-
-
-
- 
-
-
+    class RPS():
+        ROCK = 1
+        PAPER = 2
+        SCISSORS = 3
+        
 
     playerchoice = input('\n Enter... \n1 for Rock, \n2 for Paper, \n3 for Scissors:\n\n')
 
-    player = int(playerchoice)
+    if playerchoice not in ["1", "2", "3"]:
+        print('Enter a number in range 1-3')
+        return play_rps()
 
-    if player < 1 | player > 3:
-        sys.exit('enter a number in range 1-3')
+    player = int(playerchoice)
+        
         
     computerchoice = random.choice("123")
 
@@ -45,13 +40,25 @@ while playagain:
     else:
         print('computer won')
         
-    playagain = input("\nPlay again ? \nY for Yes or \nY for Yes or \n to Quit \n\n")
+        
+        
+    print("\nPlay again ?")
     
-    if playagain.lower() == "y":
-        continue
+    while True:
+        playagain = input(" \nY for Yes or \n to Quit \n\n")
+        if playagain.lower() not in ['y', 'q']:
+            continue
+        else:
+            break
+    if playagain == 'y':
+        return play_rps()
+    
     else:
         print("\n hey")
         print("\n Thank you for playing!\n")
-        playagain = False
+        sys.exit("Bye!....")
 
-sys.exit("Bye!....")
+
+
+
+play_rps()
